@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Use Case Diagrams Quiz</title>
+<style>
+:root{--bg:#F6FAF9;--card:#fff;--ink:#1F2937;--mute:#5B6B73;--tl:#0F766E;--mt:#D5EFEA;--dk:#12302F;--am:#F59E0B;--ok:#157347;--okb:#E3F4EA;--bad:#B42318;--badb:#FDECEA;--bd:#D3DEDC}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1A1A;--card:#162626;--ink:#E7F0EE;--mute:#9DB3AF;--tl:#4FD1C2;--mt:#1F3B39;--dk:#E7F0EE;--am:#F5B83D;--ok:#6EE7A0;--okb:#173A28;--bad:#FF9B90;--badb:#431C1A;--bd:#2D4543}}
+:root[data-theme="dark"]{--bg:#0E1A1A;--card:#162626;--ink:#E7F0EE;--mute:#9DB3AF;--tl:#4FD1C2;--mt:#1F3B39;--dk:#E7F0EE;--am:#F5B83D;--ok:#6EE7A0;--okb:#173A28;--bad:#FF9B90;--badb:#431C1A;--bd:#2D4543}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Calibri,"Segoe UI",system-ui,Arial,sans-serif;font-size:17px;line-height:1.5}
+main{max-width:720px;margin:0 auto;padding:24px 18px 48px}
+h1,h2{font-family:Cambria,Georgia,"Times New Roman",serif;color:var(--dk);line-height:1.2;margin:0 0 .5em}
+h1{font-size:2.1rem}h2{font-size:1.35rem}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:22px;margin-bottom:16px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.9rem;color:var(--mute);margin-bottom:8px}
+.pill{background:var(--tl);color:var(--bg);font-weight:700;border-radius:99px;padding:2px 12px;font-size:.85rem}
+.bar{height:8px;background:var(--mt);border-radius:9px;overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;background:var(--tl)}
+.q{font-size:1.2rem;font-weight:600;margin:0 0 6px}
+.hint{color:var(--mute);font-size:.9rem;margin:0 0 14px}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:2px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.opt:hover{border-color:var(--tl)}
+.opt b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--mt);color:var(--dk);display:grid;place-items:center;font-size:.85rem}
+.opt[aria-pressed="true"]{border-color:var(--tl);background:var(--mt)}
+.opt.ok{border-color:var(--ok);background:var(--okb)}.opt.bad{border-color:var(--bad);background:var(--badb)}
+.btn{font:inherit;font-weight:700;background:var(--tl);color:var(--bg);border:0;border-radius:10px;padding:12px 24px;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.alt{background:var(--mt);color:var(--dk)}
+.fb{border-radius:12px;padding:14px 16px;margin:6px 0 16px}
+.fb.ok{background:var(--okb)}.fb.bad{background:var(--badb)}
+.fb strong{display:block;margin-bottom:2px}
+.lv{display:flex;gap:12px;align-items:center;padding:8px 0}
+.lv span:first-child{flex:none;width:34px;height:34px;border-radius:50%;background:var(--am);color:#12302F;font-weight:700;display:grid;place-items:center}
+.big{font-family:Cambria,Georgia,serif;font-size:3.4rem;font-weight:700;color:var(--tl);line-height:1}
+.row{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:.95rem}
+.row .bar{flex:1;margin:0}.row span:first-child{width:110px}
+.miss{border-top:1px solid var(--bd);padding:10px 0;font-size:.95rem}.miss small{color:var(--mute)}
+@media(max-width:480px){h1{font-size:1.7rem}.card{padding:16px}}
+</style></head>
+<body><main id="app"></main>
+<script>
+const LV=["Beginner","Intermediate","Advanced","Expert"];
+const Q=[
+{l:1,q:"In a use case diagram, which shape represents a system function?",o:["Stick figure","Rectangle","Dashed arrow","Oval (ellipse)"],a:[3],e:"A use case is an oval naming a function that serves a user goal. Stick figures are actors, the rectangle is the system boundary, and dashed arrows are include/extend."},
+{l:1,q:"Which is the best name for a use case?",o:["Order form","Customer","Place Order","Orders database"],a:[2],e:"Use cases are named with verbs and express a user goal. The other names are things, screens or actors."},
+{l:1,q:"A vending machine is used by a customer to buy products. A supplier restocks it and the same supplier collects the money. How many actors does the diagram need?",o:["4","3","1","2"],a:[3],e:"Customer and Supplier. Collecting money is just another task done by the Supplier role, so it is not a separate actor."},
+{l:1,q:"What does the system boundary rectangle show?",o:["What is inside the system and what is external to it","Which use cases run in parallel","The order in which use cases execute","Which actors are most important"],a:[0],e:"The boundary separates the use cases the system provides from the actors that live outside it."},
+{l:2,q:"To Authorize Car Loan, a clerk must always run Check Client's Credit History. How do you model it?",o:["Check Client's Credit History «extend» Authorize Car Loan","Authorize Car Loan generalizes Check Client's Credit History","Authorize Car Loan «include» Check Client's Credit History","A plain association between the two use cases"],a:[2],e:"Mandatory behavior is an «include», with the arrow from the base use case to the included one. The base cannot complete without it (tight coupling)."},
+{l:2,q:"Which statement about «extend» is true?",o:["The base use case cannot run without the extension","It is used to reuse a common sub-flow in many use cases","The arrow points from the base to the extension","The extension is optional or conditional; the base can run alone"],a:[3],e:"Extend models optional or conditional behavior (loose coupling). The arrow goes from the extension to the base."},
+{l:2,m:1,q:"Select ALL correct statements about actors.",o:["An actor can be an external system","A timer can be an actor if it triggers a use case","Actors are part of the system being modelled","One person can play several actor roles (e.g., a professor as instructor and researcher)"],a:[0,1,3],e:"Actors are external to the system: humans, machines, other systems, sensors or timers that trigger a use case. A person may play several roles."},
+{l:2,q:"Write Review is an optional step offered from View Product Details. Which notation is correct?",o:["View Product Details → Write Review, labelled «include»","View Product Details → Write Review, labelled «extend»","Write Review → View Product Details, labelled «extend»","Write Review → View Product Details, solid line with hollow triangle"],a:[2],e:"The optional use case extends the standard one, so the dashed «extend» arrow starts at Write Review and points to View Product Details."},
+{l:3,q:"Inpatient Admission and Outpatient Admission are two kinds of Patient Hospital Admission. Which relationship fits?",o:["Include","Extend","Association","Generalization (hollow-triangle arrow toward the parent)"],a:[3],e:"The children are specializations of the parent: they inherit its behavior and may add to or override it."},
+{l:3,q:"Which of these is a modelling error?",o:["A plain association line between two use cases","An actor associated with three use cases","A use case included by two other use cases","An actor drawn outside the system boundary"],a:[0],e:"Associations link actors to use cases. Use cases relate to each other through include, extend or generalization. The other options are all valid."},
+{l:3,q:"Checkout needs a logged-in user. If the visitor is not yet a member, registration is offered. Which model is best?",o:["Checkout «extend» Login; Register «include» Login","Login «include» Checkout and Register","Checkout, Login and Register linked by plain associations","Checkout «include» Login; Register «extend» Login [user is not a member]"],a:[3],e:"Login is mandatory for Checkout (include). Register happens only under a condition, so it extends Login."},
+{l:3,m:1,q:"For an online shop, select ALL good user-goal-level use cases.",o:["Place Order","Click the Submit button","Track Order","Validate card-number checksum","Return Item"],a:[0,2,4],e:"Use cases deliver a goal to an actor. Button clicks and internal validations are sub-functions that belong in the textual description."},
+{l:4,q:"A designer makes Print Receipt an «include» of Withdraw Cash. What changes?",o:["Print Receipt becomes optional","Nothing; include and extend are interchangeable","Withdraw Cash can no longer complete without printing a receipt","Withdraw Cash becomes a child of Print Receipt"],a:[2],e:"Include makes the behavior mandatory. For an optional receipt, Print Receipt should «extend» Withdraw Cash."},
+{l:4,q:"Enrolling requires paying a fee, and the student chooses card OR bank transfer. Which design is best?",o:["Enroll «include» Pay Fee; Pay by Card and Pay by Bank Transfer generalize Pay Fee","Enroll «extend» Pay by Card and Pay by Bank Transfer","Enroll «include» both Pay by Card and Pay by Bank Transfer","Pay Fee «include» Enroll"],a:[0],e:"Payment is mandatory (include), and the two ways of paying are alternative specializations of one goal. Two includes would require both; extends would make payment optional."},
+{l:4,q:"Students and instructors both Log In and Edit Profile, but only students Enroll. What is the cleanest model?",o:["Duplicate Log In and Edit Profile for each actor","Make Enroll extend Log In","Make Student a use case","Add a Registered User actor generalized by Student and Instructor, linked to Log In and Edit Profile"],a:[3],e:"Actor generalization removes duplication: shared goals attach to the parent actor, and Student alone is linked to Enroll."},
+{l:4,m:1,q:"Select ALL true statements about use case modelling.",o:["A diagram captures the complete information of a use case","A user story is an abbreviated use case description","Include and extend relationships are best added at the end, to avoid drifting into process thinking","Some use cases (e.g., included ones) may have no direct association with an actor"],a:[1,2,3],e:"Diagrams give an overview but are secondary to the textual description, which is essential."}
+];
+const app=document.getElementById("app");let i=0,pts=0,res=[],sel=[],done=false;
+const max=Q.reduce((s,q)=>s+q.l,0),L="ABCDE";
+function home(){app.innerHTML=`<div class="card"><h1>Use Case Diagrams Quiz</h1><p>${Q.length} questions that get harder as you go. Harder questions are worth more points.</p>${LV.map((n,k)=>`<div class="lv"><span>${k+1}</span><span><b>${n}</b> · 4 questions · ${k+1} pt each</span></div>`).join("")}<p class="hint">Some questions ask you to select all correct answers.</p><button class="btn" data-a="start">Start the quiz</button></div>`}
+function render(){if(i>=Q.length)return results();const q=Q[i];sel=[];done=false;
+app.innerHTML=`<div class="top"><span class="pill">Level ${q.l} · ${LV[q.l-1]}</span><span>Question ${i+1} of ${Q.length} · ${q.l} pt</span></div><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><div class="card"><p class="q">${q.q}</p><p class="hint">${q.m?"Select all that apply.":"Select one answer."}</p><div id="opts">${q.o.map((t,k)=>`<button class="opt" aria-pressed="false" data-a="pick" data-k="${k}"><b>${L[k]}</b><span>${t}</span></button>`).join("")}</div><div id="fb"></div><button class="btn" id="go" data-a="check" disabled>Check answer</button></div>`}
+function pick(k){if(done)return;const q=Q[i];sel=q.m?(sel.includes(k)?sel.filter(x=>x!=k):[...sel,k]):[k];
+document.querySelectorAll(".opt").forEach((b,n)=>b.setAttribute("aria-pressed",sel.includes(n)));document.getElementById("go").disabled=!sel.length}
+function check(){done=true;const q=Q[i];const ok=sel.length==q.a.length&&q.a.every(x=>sel.includes(x));res.push(ok);if(ok)pts+=q.l;
+document.querySelectorAll(".opt").forEach((b,n)=>{if(q.a.includes(n))b.classList.add("ok");else if(sel.includes(n))b.classList.add("bad")});
+document.getElementById("fb").innerHTML=`<div class="fb ${ok?"ok":"bad"}"><strong>${ok?"Correct! +"+q.l+" pt":"Not quite."}</strong>${q.e}</div>`;
+const g=document.getElementById("go");g.textContent=i==Q.length-1?"See results":"Next question";g.dataset.a="next";g.disabled=false;g.focus()}
+function results(){const pc=Math.round(pts/max*100);
+const t=pc>=90?"Use case architect":pc>=70?"Confident modeler":pc>=45?"Getting there":"Time to revisit the basics";
+const rows=LV.map((n,k)=>{const c=Q.filter((q,x)=>q.l==k+1&&res[x]).length;return`<div class="row"><span>${n}</span><div class="bar"><i style="width:${c/4*100}%"></i></div><span>${c}/4</span></div>`}).join("");
+const miss=Q.map((q,x)=>res[x]?"":`<div class="miss"><b>${q.q}</b><br><small>Answer: ${q.a.map(k=>q.o[k]).join(" · ")}</small></div>`).join("");
+app.innerHTML=`<div class="card"><h2>Your result</h2><div class="big">${pts}<small style="font-size:1.3rem;color:var(--mute)"> / ${max} pts</small></div><p><b>${t}</b> (${pc}%)</p>${rows}<p style="margin-top:18px"><button class="btn" data-a="start">Try again</button></p></div>${miss?`<div class="card"><h2>Questions to review</h2>${miss}</div>`:`<div class="card"><h2>Perfect score!</h2><p>No mistakes to review.</p></div>`}`;scrollTo(0,0)}
+app.addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a;
+if(a=="start"){i=0;pts=0;res=[];render();scrollTo(0,0)}else if(a=="pick")pick(+b.dataset.k);else if(a=="check")check();else if(a=="next"){i++;render();scrollTo(0,0)}});
+home();
+</script></body></html>
